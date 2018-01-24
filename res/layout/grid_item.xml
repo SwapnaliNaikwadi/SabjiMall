@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp">
+
+        <ImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/vegetables"/>
+
+        <TextView
+            android:id="@+id/tv_species"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingRight="1dp"
+            android:text="Test"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:layout_alignBottom="@id/img_thumbnail"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

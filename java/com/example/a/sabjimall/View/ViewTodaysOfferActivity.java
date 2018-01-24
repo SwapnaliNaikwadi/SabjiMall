@@ -1,0 +1,91 @@
+package com.example.a.sabjimall.View;
+
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.example.a.sabjimall.Fragments.BestSellerFragment;
+import com.example.a.sabjimall.Fragments.FreshFruitsFragment;
+import com.example.a.sabjimall.Fragments.FreshVegetablesFragment;
+import com.example.a.sabjimall.Fragments.TodaysOfferFragment;
+import com.example.a.sabjimall.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ViewTodaysOfferActivity extends AppCompatActivity {
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_todays_offer);
+        getSupportActionBar().setTitle("Fal Sabji Mall");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewTodaysOfferActivity.ViewPagerAdapter adapter = new ViewTodaysOfferActivity.ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FreshFruitsFragment(), "Fresh Fruits");
+        adapter.addFragment(new FreshVegetablesFragment(), "Fresh Vegetables");
+        adapter.addFragment(new TodaysOfferFragment(), "Todays Offer");
+        adapter.addFragment(new BestSellerFragment(),"Best Seller");
+
+        viewPager.setAdapter(adapter);
+    }
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}
